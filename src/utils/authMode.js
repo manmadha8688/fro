@@ -11,5 +11,8 @@ export function getAuthMode() {
     return 'mock'
   }
   if (import.meta.env.VITE_GOOGLE_CLIENT_ID) return 'browser'
+  // In production we avoid backend session OAuth (would require a server-side session store / DB).
+  // If client ID isn't provided, browser mode will surface a clear "set VITE_GOOGLE_CLIENT_ID" error.
+  if (import.meta.env.PROD) return 'browser'
   return 'backend'
 }
