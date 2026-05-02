@@ -76,7 +76,7 @@ export function LoginPage() {
             <Spinner size="sm" label="Connecting" /> Connecting…
           </>
         ) : (
-          <>Connect Google Drive</>
+          <>Sign in with Google</>
         )}
       </button>
 
@@ -85,66 +85,7 @@ export function LoginPage() {
         the open web for responses.
       </p>
 
-      {authMode === 'browser' ? (
-        <div className="login-page__footnote login-page__footnote--dim login-page__setup">
-          <p className="login-page__setup-title">Google Cloud setup</p>
-          <p>
-            Use an <strong>OAuth client type: Web application</strong> (not Desktop).
-            In{' '}
-            <a
-              href="https://console.cloud.google.com/apis/credentials"
-              target="_blank"
-              rel="noreferrer"
-            >
-              APIs &amp; Services → Credentials
-            </a>
-            , edit your Web client and add <strong>the same host you use in the address bar</strong>{' '}
-            to <strong>both</strong> lists below (mismatch causes{' '}
-            <code>redirect_uri_mismatch</code>).
-          </p>
-          <ul className="login-page__setup-list">
-            <li>
-              <strong>Enable Google Drive API:</strong>{' '}
-              <a
-                href="https://console.cloud.google.com/apis/library/drive.googleapis.com"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Library → Google Drive API → Enable
-              </a>
-              {' '}
-              for the same project as your OAuth client. Fixes “has not been used / disabled”; wait a
-              few minutes after enabling.
-            </li>
-            <li>
-              <strong>Authorized JavaScript origins:</strong>{' '}
-              <code>http://localhost:5173</code> and, if you use it,{' '}
-              <code>http://127.0.0.1:5173</code>
-              . For production (e.g. Vercel), add your real site origin too, such as{' '}
-              <code>https://your-app.vercel.app</code> (and your custom domain if you use one).
-            </li>
-            <li>
-              <strong>Authorized redirect URIs:</strong> add the{' '}
-              <em>same</em> URLs again (e.g. <code>http://localhost:5173</code> and{' '}
-              <code>http://127.0.0.1:5173</code>). Save and wait a minute, then retry.
-              Include your production origins here as well (Vercel URL / custom domain).
-            </li>
-            <li>
-              <strong>OAuth consent screen → Scopes:</strong> add{' '}
-              <code>…/auth/drive.readonly</code> (Google Drive API). Without it you get
-              “insufficient authentication scopes”. Then at{' '}
-              <a href="https://myaccount.google.com/permissions" target="_blank" rel="noreferrer">
-                Google Account → Third-party access
-              </a>
-              , remove this app and connect again so Google asks for Drive permission.
-            </li>
-          </ul>
-          <p>
-            Put the Web client ID in <code>.env.local</code> as{' '}
-            <code>VITE_GOOGLE_CLIENT_ID</code>, then restart <code>npm run dev</code>.
-          </p>
-        </div>
-      ) : null}
+      
     </div>
   )
 }
