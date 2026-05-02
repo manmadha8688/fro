@@ -120,11 +120,14 @@ export function LoginPage() {
               <strong>Authorized JavaScript origins:</strong>{' '}
               <code>http://localhost:5173</code> and, if you use it,{' '}
               <code>http://127.0.0.1:5173</code>
+              . For production (e.g. Vercel), add your real site origin too, such as{' '}
+              <code>https://your-app.vercel.app</code> (and your custom domain if you use one).
             </li>
             <li>
               <strong>Authorized redirect URIs:</strong> add the{' '}
               <em>same</em> URLs again (e.g. <code>http://localhost:5173</code> and{' '}
               <code>http://127.0.0.1:5173</code>). Save and wait a minute, then retry.
+              Include your production origins here as well (Vercel URL / custom domain).
             </li>
             <li>
               <strong>OAuth consent screen → Scopes:</strong> add{' '}

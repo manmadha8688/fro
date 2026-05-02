@@ -167,9 +167,9 @@ export function AuthProvider({ children }) {
         window.location.href = data.authorization_url
         return
       }
-      const profile = data?.user ?? MOCK_USER
-      setUser(profile)
-      toast.success('Google Drive connected.', 'Signed in')
+      throw new Error(
+        'Backend did not return an authorization_url. Check backend OAuth env (GOOGLE_OAUTH_CLIENT_ID/SECRET/REDIRECT_URI), CORS/CSRF trusted origins, and cross-site cookie settings.',
+      )
     } catch (err) {
       const msg =
         err?.response?.data?.detail ||
