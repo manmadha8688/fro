@@ -4,7 +4,12 @@
  * backend — Django session + server-side OAuth (needs server env vars).
  */
 export function getAuthMode() {
-  if (import.meta.env.VITE_USE_MOCK !== 'false') return 'mock'
+  const v = import.meta.env.VITE_USE_MOCK
+  if (v == null || v === '') {
+    if (!import.meta.env.PROD) return 'mock'
+  } else if (v !== 'false') {
+    return 'mock'
+  }
   if (import.meta.env.VITE_GOOGLE_CLIENT_ID) return 'browser'
   return 'backend'
 }

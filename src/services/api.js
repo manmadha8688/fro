@@ -6,7 +6,9 @@ import {
 } from './mockData'
 
 function isMockMode() {
-  return import.meta.env.VITE_USE_MOCK !== 'false'
+  const v = import.meta.env.VITE_USE_MOCK
+  if (v == null || v === '') return !import.meta.env.PROD
+  return v !== 'false'
 }
 
 function delay(ms = 450) {
