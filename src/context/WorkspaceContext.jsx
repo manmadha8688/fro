@@ -147,6 +147,9 @@ export function WorkspaceProvider({ children }) {
             { role: 'user', content: trimmed },
           ],
         }
+        if (getAuthMode() === 'browser' && googleAccessToken) {
+          payload.google_access_token = googleAccessToken
+        }
         const data = await sendChatApi(payload)
         const assistantMsg = {
           id: nextId(),
@@ -176,7 +179,7 @@ export function WorkspaceProvider({ children }) {
         setChatLoading(false)
       }
     },
-    [messages, selectedFolder, toast],
+    [messages, selectedFolder, toast, googleAccessToken],
   )
 
   const value = useMemo(
